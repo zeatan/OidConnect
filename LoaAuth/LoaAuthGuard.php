@@ -11,9 +11,9 @@
 
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\Guard;
+use Illuminate\Auth\SessionGuard;
 
-class LoaAuthGuard extends Guard  implements LoaAuthContract {
+class LoaAuthGuard extends SessionGuard  implements LoaAuthContract {
 
 	public    $loalevel=null;
 	public    $loaname=null;
@@ -53,8 +53,8 @@ class LoaAuthGuard extends Guard  implements LoaAuthContract {
 
 	// helper to store in session target url & loa
 	public function intended ($uri, $loa) {
-		$this->session->set ('url.intended',$uri);
-		$this->session->set ('loa.intended',$loa);
+		$this->session->put ('url.intended',$uri);
+		$this->session->put ('loa.intended',$loa);
 	}
 
 	// send user password for validation to auth->provider
@@ -97,12 +97,12 @@ class LoaAuthGuard extends Guard  implements LoaAuthContract {
 
 		// keep track of LOA in both current object and session
 		$this->loalevel = $loa;
-		$this->session->set ($this->getLoaName(), $this->loalevel);
+		$this->session->put ($this->getLoaName(), $this->loalevel);
 	}
 
 	public function logout () {
 		$this->loalevel = 0;
-		$this->session->set ($this->getLoaName(), $this->loalevel);
+		$this->session->put ($this->getLoaName(), $this->loalevel);
 		parent::logout();
 	}
 }

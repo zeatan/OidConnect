@@ -39,7 +39,7 @@ class UserProfileService implements UserProfileInterface  {
 
     public function __construct ($app) {
 
-        $this->usermodelclass = $app['config']['OidConnect.dbusermodel'] ?: $app['config']['auth.model'] ;
+        $this->usermodelclass = $app['config']['OidConnect.dbusermodel'] ?: $app['config']['auth.providers.users.model'] ;
         $this->fedkeyclass    = $app['config']['OidConnect.dbusermodel'] ?: 'OidConnect\Models\FedKeyModel' ;
         $this->usermodel   = new $this->usermodelclass ();
         $this->fedkeymodel = new $this->fedkeyclass();

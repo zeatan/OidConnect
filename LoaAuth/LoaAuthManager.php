@@ -23,22 +23,24 @@ class LoaAuthManager extends AuthManager {
         $this->loaGuardClass = $app['config']['OidConnect.authGuardModel'] ?:  'OidConnect\LoaAuth\LoaAuthGuard';
     }
 
-    protected function callCustomCreator($driver)  {
-        $custom = parent::callCustomCreator($driver);
+    protected function callCustomCreator($name, array $config)  {
+        $custom = parent::callCustomCreator($name, $config);
         if ($custom instanceof Guard) return $custom;
 
-        return new $this->loaGuardClass($custom, $this->app['session.store']);
+        return new $this->loaGuardClass($name, $custom, $this->app['session.store'], $this->app->make('request'));
     }
 
-    public function createEloquentDriver()	{
-		$provider = $this->createEloquentProvider();
-		return new $this->loaGuardClass($provider, $this->app['session.store']);
+    public function createEloquentDriver($name, array $config)	{
+        $config = $this->app['config']['auth.providers.'.$config['provider']];
+		$provider = $this->createEloquentProvider($config);
+		return new $this->loaGuardClass($name, $provider, $this->app['session.store'], $this->app->make('request'));
 	}
 
 
-    public function createDatabaseDriver()   {
-        $provider = $this->createDatabaseProvider();
-        return new $this->loaGuardClass($provider, $this->app['session.store']);
+    public function createDatabaseDriver($name, array $config)   {
+        $config = $this->app['config']['auth.providers.'.$config['provider']];
+        $provider = $this->createDatabaseProvider($config);
+        return new $this->loaGuardClass($name, $provider, $this->app['session.store'], $this->app->make('request'));
     }
 
 }

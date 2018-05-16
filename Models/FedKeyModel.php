@@ -16,8 +16,7 @@ class FedKeyModel extends Model {
     protected $primaryKey = 'id';
 
     public function user ()  {
-        // uses with $name = $fedkey->user->name !!! do not user user()
-        return $this->belongsTo('OidConnect\Models\FedUserModel','user_id','id');
+        return $this->belongsTo('OidConnect\Models\FedUserModel','id','user_id');
     }
 
 }

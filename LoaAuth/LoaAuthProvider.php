@@ -32,7 +32,7 @@ class LoaAuthProvider extends AuthServiceProvider {
 		});
 
 		$this->app->singleton('auth.driver', function($app)	{
-			return $app['auth']->driver();
+			return $app['auth']->guard();
 		});
 
 		// need to enforce this to overload alias set in application.php

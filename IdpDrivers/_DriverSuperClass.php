@@ -262,7 +262,7 @@ abstract class  _DriverSuperClass {
     public function getIdpAuthorization ()   {
 
         $state = sha1(time());
-        Session::set ('state', $state);
+        Session::put ('state', $state);
 
         return new RedirectResponse($this->getAuthUrl($state));
     }

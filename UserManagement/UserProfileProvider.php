@@ -22,7 +22,7 @@ class UserProfileProvider extends SuperManagerClass {
 	public function register()	{
 
 		// Register DriverManager Classe. In Bindshare mode class is instantiated once & shared with further call
-		$this->app->bindShared(
+		$this->app->singleton(
 			$this->abstract,                                         // abstract interface effective method
 			function($app) {return new UserProfileService($app);}    // effective call to instantiate the object
 		);
