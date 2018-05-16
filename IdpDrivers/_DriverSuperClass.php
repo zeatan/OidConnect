@@ -155,7 +155,7 @@ abstract class  _DriverSuperClass {
             // search for user in federation table
             $fedkey = $this->fedKeyModel->where('idp_uid', '=',$this->uid )->where('social_uid', '=', $tokens ['socialuid'])->first();
 
-            if (count($fedkey) != 0) {
+            if ($fedkey) {
                 $socialuser = new $this->socialUser ($this, $tokens, $fedkey->getAttributes());
                 return ($socialuser);
             }
