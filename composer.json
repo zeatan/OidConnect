@@ -3,7 +3,7 @@
     "description": "OpenID-Connect/OAuth2 Social Login with LOA & Federation builtin",
     "keywords": ["openid","oauth2", "oauth", "oidc","socialite","laravel"],
     "require": {
-        "laravel/framework": "^5.6",
+        "laravel/framework": "^5.7",
         "guzzlehttp/guzzle": "~5.0"
     },
     "license": "Apache-2",
