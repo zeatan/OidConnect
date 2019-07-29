@@ -50,7 +50,7 @@ class SocialUser {
     }
 
 	public function unfederate () {
-	  $this->provider->unfederate ();
+	  $this->provider->unfederate ($this);
     }
 
 	// attributes match with Eloquent Fedkey table definition
