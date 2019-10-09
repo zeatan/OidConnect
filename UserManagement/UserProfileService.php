@@ -208,7 +208,7 @@ class UserProfileService implements UserProfileInterface  {
         $localuser =  $this->findLocalUserByEmail($email);
 
         // user does not exist let's provision it from IDP profile info
-        if (count($localuser) == 0) {
+        if (! $localuser) {
             $localuser = $this->provisionSocialUser ($socialuser, $email, $pseudonym, $loa);
         }
         return ($localuser);
