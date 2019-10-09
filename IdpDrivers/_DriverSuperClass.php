@@ -174,7 +174,7 @@ abstract class  _DriverSuperClass {
            $fedkey = $this->fedKeyModel->where('idp_uid', '=',$this->uid )->where('social_uid', '=', $socialuser->tokens['socialuid'])->first();
 
            // user is definitely not federate
-           if (count($fedkey) == 0) {
+           if (! $fedkey) {
                $fedkeyrecord = new $this->fedKeyModel();
                $fedkeyrecord->idp_uid = $this->uid;
                $fedkeyrecord->social_loa = $this->loa;
