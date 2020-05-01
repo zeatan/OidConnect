@@ -4,7 +4,7 @@
     "keywords": ["openid","oauth2", "oauth", "oidc","socialite","laravel"],
     "require": {
         "laravel/framework": "^7.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^6.3.1|^7.0"
     },
     "license": "Apache-2",
     "authors": [
